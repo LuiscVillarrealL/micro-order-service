@@ -6,8 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.context.annotation.Import;
 import org.testcontainers.containers.MySQLContainer;
+
+import com.lcvl.microservices.order.stubs.InventoryClientStub;
 
 import static org.junit.Assert.assertThat;
 
@@ -16,6 +19,7 @@ import io.restassured.RestAssured;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(classes = OrderServiceApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureWireMock(port = 0) //0 = random
 class OrderServiceApplicationTests {
 
     @ServiceConnection
@@ -43,6 +47,7 @@ class OrderServiceApplicationTests {
                 }
                 """;
 
+        InventoryClientStub.stubInventoryCall("iphone_15", 1);
 
         var responseBodyString = RestAssured.given()
                 .contentType("application/json")
