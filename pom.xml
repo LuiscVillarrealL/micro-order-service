@@ -85,6 +85,14 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.testcontainers/kafka -->
+<dependency>
+    <groupId>org.testcontainers</groupId>
+    <artifactId>kafka</artifactId>
+    <scope>test</scope>
+</dependency>
+	
+		
 		<dependency>
     <groupId>io.rest-assured</groupId>
     <artifactId>rest-assured</artifactId>
@@ -128,23 +136,35 @@
     <artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 
-  <dependency>
-      <groupId>org.springframework.kafka</groupId>
-      <artifactId>spring-kafka</artifactId>
-    </dependency>
-    
         <dependency>
-      <groupId>org.springframework.kafka</groupId>
-      <artifactId>spring-kafka-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-      <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>kafka</artifactId>
-      <scope>test</scope>
-    </dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+<dependency>
+    <groupId>io.confluent</groupId>
+    <artifactId>kafka-avro-serializer</artifactId>
+    <version>7.8.0</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.avro</groupId>
+    <artifactId>avro</artifactId>
+    <version>1.11.3</version>
+</dependency>
+
+<dependency>
+    <groupId>io.confluent</groupId>
+    <artifactId>kafka-schema-registry-client</artifactId>
+    <version>7.8.0</version>
+</dependency>
+
+<dependency>
+	<groupId>com.lcvl.microservices</groupId>
+	<artifactId>micro-commons</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+</dependency>
+
      
+    
 	</dependencies>
 	
 	  <dependencyManagement>
@@ -185,7 +205,18 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			
+	
 		</plugins>
 	</build>
+	
+	    <repositories>
+        <repository>
+            <id>confluent</id>
+            <url>https://packages.confluent.io/maven/</url>
+        </repository>
+    </repositories>
+	
+
 
 </project>
